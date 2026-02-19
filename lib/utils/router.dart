@@ -6,6 +6,7 @@ class Approuter {
   static final router = GoRouter(
     navigatorKey: GlobalKey<NavigatorState>(),
     debugLogDiagnostics: true,
+    initialLocation: "/",
     routes: [
       GoRoute(
         path: '/',
