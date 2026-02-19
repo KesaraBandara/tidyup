@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tidyup/pages/home_page.dart';
 
 void main() {
   runApp(Myapp());
@@ -12,7 +13,7 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
       title: "tidyup",
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: HomePage(),
     );
   }
 }
