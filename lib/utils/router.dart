@@ -9,6 +9,7 @@ class Approuter {
     initialLocation: "/",
     routes: [
       GoRoute(
+        name: "home",
         path: '/',
         builder: (context, state) {
           return const HomePage();
