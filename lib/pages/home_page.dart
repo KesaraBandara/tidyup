@@ -31,11 +31,19 @@ class _HomePageState extends State<HomePage> {
                   description: "",
                   icon: Icons.bookmark_add_outlined,
                 ),
-                 NotesTodoCard(
+                NotesTodoCard(
                   title: "TO-DO List",
                   description: "",
                   icon: Icons.today_outlined,
                 ),
+              ],
+            ),
+            SizedBox(height: AppConstants.kDefaultPadding),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Today's progress", style: AppTextStyles.appSubtitle),
+                Text("See All", style: AppTextStyles.appButton ,)
               ],
             ),
           ],
