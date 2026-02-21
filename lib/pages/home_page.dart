@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tidyup/utils/constants.dart';
 import 'package:tidyup/utils/text_styles.dart';
 import 'package:tidyup/widget/progress_card.dart';
 
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
         body: Padding(padding: const EdgeInsets.all(8),
         child: Column(
           children: [
+            SizedBox(height: AppConstants.kDefaultPadding),
             ProgressCard(
               completedTasks: 5, 
               totalTasks: 10,
