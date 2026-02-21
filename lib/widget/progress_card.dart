@@ -20,6 +20,10 @@ class ProgressCard extends StatefulWidget {
 class _ProgressCardState extends State<ProgressCard> {
   @override
   Widget build(BuildContext context) {
+
+        double completionPercentage = widget.totalTasks != 0
+        ? (widget.completedTasks / widget.totalTasks) * 100
+        : 0; // Handle division by zero
     return Container(
       padding: const EdgeInsets.all(AppConstants.kDefaultPadding),
       decoration: BoxDecoration(
@@ -47,8 +51,8 @@ class _ProgressCardState extends State<ProgressCard> {
           Stack(
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 0.18,
-                height: MediaQuery.of(context).size.width * 0.18,
+                width: MediaQuery.of(context).size.width * 0.19,
+                height: MediaQuery.of(context).size.width * 0.19,
                 decoration: BoxDecoration(
                   gradient: AppColors().kPrimaryGradient,
                   borderRadius: BorderRadius.circular(100),
@@ -57,8 +61,9 @@ class _ProgressCardState extends State<ProgressCard> {
               Positioned.fill(
                 child: Center(
                   child: Text(
-                    "100%",
+                      "${completionPercentage.toStringAsFixed(0)}%",
                     style: AppTextStyles.appSubtitle.copyWith(
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
