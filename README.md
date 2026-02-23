@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ################################
 * GO ROUTER
+* HIVE | data package - to store data(local storage) 1. flutter pub add hive_flutter 2. flutter pub add hive 3. dart pub add hive_generator
+* documentation --> https://pub.dev/documentation/hive/latest/index.html
+* to build adapters - dart run build_runner build
