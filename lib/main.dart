@@ -16,10 +16,9 @@ class Myapp extends StatelessWidget {
       title: "tidyup",
       debugShowCheckedModeBanner: false,
       theme: ThemeClass.darkTheme.copyWith(
-        textTheme: GoogleFonts.dmSansTextTheme(
-          Theme.of(context).textTheme),
+        textTheme: GoogleFonts.dmSansTextTheme(Theme.of(context).textTheme),
       ),
-      routerConfig: Approuter.router,
+      routerConfig: AppRouter.router,
     );
   }
 }
