@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tidyup/utils/constants.dart';
+import 'package:tidyup/utils/router.dart';
+import 'package:tidyup/utils/colors.dart';
+import 'package:tidyup/utils/text_styles.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({super.key});
@@ -12,7 +16,34 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes"),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            AppRouter.router.go("/");
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          side: BorderSide(color: AppColors.kWhiteColor, width: 2),
+        ),
+        child: Icon(Icons.add, color: AppColors.kWhiteColor, size: 30),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(
+          AppConstants.kDefaultPadding
+          ),
+          child: Column(
+            children: [
+              Text(
+                "Notes",
+                style: AppTextStyles.appTitle,
+              )
+            ],
+          )
       ),
     );
   }
