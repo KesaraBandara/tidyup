@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tidyup/utils/constants.dart';
+import 'package:tidyup/utils/router.dart';
 import 'package:tidyup/utils/text_styles.dart';
 import 'package:tidyup/widget/notes_todo_card.dart';
 import 'package:tidyup/widget/progress_card.dart';
@@ -26,15 +27,25 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                NotesTodoCard(
-                  title: "Notes",
-                  description: "",
-                  icon: Icons.bookmark_add_outlined,
+                GestureDetector(
+                  onTap: () {
+                    AppRouter.router.push("/notes");
+                  },
+                  child: NotesTodoCard(
+                    title: "Notes",
+                    description: "",
+                    icon: Icons.bookmark_add_outlined,
+                  ),
                 ),
-                NotesTodoCard(
-                  title: "TO-DO List",
-                  description: "",
-                  icon: Icons.today_outlined,
+                GestureDetector(
+                  onTap: () {
+                    AppRouter.router.push("/todos");
+                  },
+                  child: NotesTodoCard(
+                    title: "TO-DO List",
+                    description: "",
+                    icon: Icons.today_outlined,
+                  ),
                 ),
               ],
             ),
@@ -43,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Today's progress", style: AppTextStyles.appSubtitle),
-                Text("See All", style: AppTextStyles.appButton ,)
+                Text("See All", style: AppTextStyles.appButton),
               ],
             ),
           ],
