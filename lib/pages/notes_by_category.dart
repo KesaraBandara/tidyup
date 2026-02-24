@@ -45,7 +45,24 @@ class _NoteByCategoryState extends State<NoteByCategory> {
           },
         ),
       ),
-      
+       body: SingleChildScrollView(
+         child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.kDefaultPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                widget.category,
+                style: AppTextStyles.appTitle,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
