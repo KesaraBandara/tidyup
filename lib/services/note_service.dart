@@ -68,6 +68,7 @@ class NoteService {
     return notesByCategory;
   }
 
+
   //Mmethord to get the notes according to the category
   Future<List<Note>> getNotesByCategory(String category) async {
     //get all notes from the box
@@ -79,5 +80,19 @@ class NoteService {
       }
     }
     return notes;
+  }
+
+   // Method to update / edit a note
+  Future<void> updateNote(Note note) async {
+    try {
+      //get all notes from the box
+      final dynamic allNotes = await _myBox.get("notes");
+      final int index = allNotes.indexWhere((element) => element.id == note.id);
+      allNotes[index] = note;
+      await _myBox.put("notes", allNotes);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }
