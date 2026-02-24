@@ -98,11 +98,20 @@ class _NotesPageState extends State<NotesPage> {
                         ),
                     itemCount: noteWithCategory.length,
                     itemBuilder: (context, index) {
-                      return NotesCard(
-                        noteCategory: noteWithCategory.keys.elementAt(index),
-                        noOfNotes: noteWithCategory.values
-                            .elementAt(index)
-                            .length,
+                      return InkWell(
+                        onTap: () {
+                          // go to the notes by category page
+                          AppRouter.router.push(
+                            "/category",
+                            extra: noteWithCategory.keys.elementAt(index),
+                          );
+                        },
+                        child: NotesCard(
+                          noteCategory: noteWithCategory.keys.elementAt(index),
+                          noOfNotes: noteWithCategory.values
+                              .elementAt(index)
+                              .length,
+                        ),
                       );
                     },
                   ),
