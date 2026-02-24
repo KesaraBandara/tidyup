@@ -102,9 +102,9 @@ class NoteService {
       final dynamic allNotes = await _myBox.get("notes");
       allNotes.removeWhere((element) => element.id == noteId);
       await _myBox.put("notes", allNotes);
-    } catch (e) {
+    } catch (err) {
       // ignore: avoid_print
-      print(e);
+      print(err.toString());
     }
   }
 }
