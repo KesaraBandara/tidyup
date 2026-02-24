@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tidyup/pages/create_new_note.dart';
 import 'package:tidyup/pages/home_page.dart';
 import 'package:tidyup/pages/notes_by_category.dart';
 import 'package:tidyup/pages/notes_page.dart';
@@ -39,6 +40,16 @@ class AppRouter {
         builder: (context, state) {
           final String category = state.extra as String;
           return NoteByCategory(category: category);
+        },
+      ),
+
+      GoRoute(
+        name: "create-note",
+        path: "/create-note",
+        builder: (context, state) {
+          final isNewCategory = state.extra as bool;
+
+          return CreateNotePage(isNewCategory: isNewCategory);
         },
       ),
     ],
