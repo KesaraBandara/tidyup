@@ -3,7 +3,6 @@ import 'package:tidyup/models/note_model.dart';
 import 'package:uuid/uuid.dart';
 
 class NoteService {
-
   //all notes
   List<Note> allNotes = [
     Note(
@@ -32,10 +31,10 @@ class NoteService {
     ),
   ];
 
-    // Create the database reference for notes
+  // Create the database reference for notes
   final _myBox = Hive.box("notes");
 
-    //check weather the user is new user
+  //check weather the user is new user
   Future<bool> isNewUser() async {
     return _myBox.isEmpty;
   }
@@ -47,7 +46,7 @@ class NoteService {
     }
   }
 
-    // Method to load the notes
+  // Method to load the notes
   Future<List<Note>> loadNotes() async {
     final dynamic notes = await _myBox.get("notes");
     if (notes != null && notes is List<dynamic>) {
@@ -55,7 +54,8 @@ class NoteService {
     }
     return [];
   }
-   //loop througn all notes and create an object where the key is the category and the value is the notes in that category
+
+  //loop througn all notes and create an object where the key is the category and the value is the notes in that category
   Map<String, List<Note>> getNotesByCategoryMap(List<Note> allNotes) {
     final Map<String, List<Note>> notesByCategory = {};
     for (final note in allNotes) {
@@ -66,5 +66,18 @@ class NoteService {
       }
     }
     return notesByCategory;
+  }
+
+  //Mmethord to get the notes according to the category
+  Future<List<Note>> getNotesByCategory(String category) async {
+    //get all notes from the box
+    final dynamic allNotes = await _myBox.get("notes");
+    final List<Note> notes = [];
+    for (final note in allNotes) {
+      if (note.category == category) {
+        notes.add(note);
+      }
+    }
+    return notes;
   }
 }
