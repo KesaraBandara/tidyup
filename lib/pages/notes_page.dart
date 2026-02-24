@@ -5,6 +5,7 @@ import 'package:tidyup/utils/constants.dart';
 import 'package:tidyup/utils/router.dart';
 import 'package:tidyup/utils/colors.dart';
 import 'package:tidyup/utils/text_styles.dart';
+import 'package:tidyup/widget/notes_card.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({super.key});
@@ -70,7 +71,43 @@ class _NotesPageState extends State<NotesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppConstants.kDefaultPadding),
-        child: Column(children: [Text("Notes", style: AppTextStyles.appTitle)]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Notes", style: AppTextStyles.appTitle),
+            const SizedBox(height: 30),
+            allNotes.isEmpty
+                ? SizedBox(
+                    height: MediaQuery.of(context).size.height + 0.5,
+                    child: Center(
+                      child: Text(
+                        " No notes yet, add some! ",
+                        style: AppTextStyles.appDescription,
+                      ),
+                    ),
+                  )
+                : GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: AppConstants.kDefaultPadding,
+                          crossAxisSpacing: AppConstants.kDefaultPadding,
+                          childAspectRatio: 6 / 4,
+                        ),
+                    itemCount: noteWithCategory.length,
+                    itemBuilder: (context, index) {
+                      return NotesCard(
+                        noteCategory: noteWithCategory.keys.elementAt(index),
+                        noOfNotes: noteWithCategory.values
+                            .elementAt(index)
+                            .length,
+                      );
+                    },
+                  ),
+          ],
+        ),
       ),
     );
   }
