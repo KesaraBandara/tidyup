@@ -133,6 +133,32 @@ class _CreateNotePageState extends State<CreateNotePage> {
                         ),
                       ),
                       //button to save note
+                      const SizedBox(height: 10),
+                      Divider(
+                        color: AppColors.kWhiteColor.withOpacity(0.2),
+                        thickness: 1,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end ,
+                        children: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                AppColors.kFabColor,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "Save Note",
+                                style: AppTextStyles.appButton,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
