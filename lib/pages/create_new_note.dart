@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tidyup/services/note_service.dart';
+import 'package:tidyup/utils/colors.dart';
 import 'package:tidyup/utils/constants.dart';
 import 'package:tidyup/utils/text_styles.dart';
 
@@ -12,17 +15,16 @@ class CreateNotePage extends StatefulWidget {
 }
 
 class _CreateNotePageState extends State<CreateNotePage> {
-
   List<String> categories = [];
   final NoteService noteService = NoteService();
-  
-Future _loadCategories () async{
+
+  Future _loadCategories() async {
     categories = await noteService.getAllCategories();
 
     setState(() {
-      print(categories.length);  
+      print(categories.length);
     });
-  } 
+  }
 
   @override
   void initState() {
@@ -30,8 +32,8 @@ Future _loadCategories () async{
     _loadCategories();
     super.initState();
   }
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +48,57 @@ Future _loadCategories () async{
                 horizontal: AppConstants.kDefaultPadding / 2,
               ),
               child: Form(
-                child: Form(child: Column(children: [])),
+                child: Form(
+                  child: Column(
+                    children: [
+                      //dropdown to select category
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: DropdownButtonFormField(
+                          style: TextStyle(
+                            color: AppColors.kWhiteColor,
+                            fontFamily: GoogleFonts.dmSans().fontFamily,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                          ),
+                          isExpanded: false,
+                          hint: const Text("Select Category"),
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(AppConstants.kDefaultPadding),
+                              borderSide: BorderSide(
+                                color: AppColors.kWhiteColor.withOpacity(0.1),
+                                width: 2,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.kDefaultPadding,
+                              ),
+                              borderSide: BorderSide(
+                                color: AppColors.kWhiteColor,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          items: categories.map((String category) {
+                            return DropdownMenuItem<String>(
+                              alignment: Alignment.centerLeft,
+                              value: category,
+                              child: Text(
+                                category,
+                                style: AppTextStyles.appButton,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
