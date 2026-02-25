@@ -67,7 +67,9 @@ class _CreateNotePageState extends State<CreateNotePage> {
                           hint: const Text("Select Category"),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(AppConstants.kDefaultPadding),
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.kDefaultPadding,
+                              ),
                               borderSide: BorderSide(
                                 color: AppColors.kWhiteColor.withOpacity(0.1),
                                 width: 2,
@@ -96,6 +98,41 @@ class _CreateNotePageState extends State<CreateNotePage> {
                           onChanged: (value) {},
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      // Title field
+                      TextFormField(
+                        maxLines: 2,
+                        style: TextStyle(
+                          color: AppColors.kWhiteColor,
+                          fontSize: 30,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Note Title",
+                          hintStyle: TextStyle(
+                            color: AppColors.kWhiteColor.withOpacity(0.5),
+                            fontSize: 35,
+                          ),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      //content field
+                      TextFormField(
+                        maxLines: 12,
+                        style: TextStyle(
+                          color: AppColors.kWhiteColor,
+                          fontSize: 20,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Note Content",
+                          hintStyle: TextStyle(
+                            color: AppColors.kWhiteColor.withOpacity(0.5),
+                            fontSize: 20,
+                          ),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                      //button to save note
                     ],
                   ),
                 ),
