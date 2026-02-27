@@ -16,27 +16,26 @@ class NoteByCategory extends StatefulWidget {
 }
 
 class _NoteByCategoryState extends State<NoteByCategory> {
-
   List<Note> noteList = [];
-  void initState(){
+  void initState() {
     _loadCategoriesNotes();
-        super.initState();
+    super.initState();
   }
 
   // load all notes by category
-     Future<void> _loadCategoriesNotes() async {
+  Future<void> _loadCategoriesNotes() async {
     final noteService = NoteService();
     noteList = await noteService.getNotesByCategory(widget.category);
     setState(() {});
   }
 
-    //edit note
+  //edit note
   void _editNote(Note note) {
     //navigate to the edit note page
     AppRouter.router.push('/edit-note', extra: note);
   }
 
-   //remove note
+  //remove note
   Future<void> _removeNote(String id) async {
     try {
       await NoteService().deleteNote(id);
@@ -49,40 +48,31 @@ class _NoteByCategoryState extends State<NoteByCategory> {
       AppHelpers.showSnackBar(context, "Failed to delete note");
     }
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-           //remove the back button
+        //remove the back button
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            AppRouter.router.push(
-              "/notes",
-            );
+            AppRouter.router.push("/notes");
           },
         ),
       ),
-       body: SingleChildScrollView(
-         child: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.kDefaultPadding),
+            horizontal: AppConstants.kDefaultPadding,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                widget.category,
-                style: AppTextStyles.appTitle,
-              ),
-                            const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
+              Text(widget.category, style: AppTextStyles.appTitle),
+              const SizedBox(height: 30),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -103,10 +93,15 @@ class _NoteByCategoryState extends State<NoteByCategory> {
                         noteList.removeAt(index);
                       });
                     },
-                   editNote: () async {
+                    editNote: () async {
                       _editNote(noteList[index]);
-                   }, 
-                   viewSingleNote: () {  },
+                    },
+                    viewSingleNote: () {
+                      AppRouter.router.push(
+                        '/single-note',
+                        extra: noteList[index],
+                      );
+                    },
                   );
                 },
               ),

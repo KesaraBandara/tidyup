@@ -60,23 +60,29 @@ class _NoteCategoryCardState extends State<NoteCategoryCard> {
               onTap: widget.viewSingleNote,
               child: Column(
                 children: [
-                  Text(
-                    widget.noteTitle,
-                    style: AppTextStyles.appSubtitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.noteContent,
-                    style: AppTextStyles.appDescriptionSmall.copyWith(
-                      color: AppColors.kWhiteColor.withOpacity(0.5),
+                  GestureDetector(
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.noteTitle,
+                          style: AppTextStyles.appSubtitle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          widget.noteContent,
+                          style: AppTextStyles.appDescriptionSmall.copyWith(
+                            color: AppColors.kWhiteColor.withOpacity(0.5),
+                          ),
+                          maxLines: 6,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
                     ),
-                    maxLines: 6,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
                   ),
                 ],
               ),
