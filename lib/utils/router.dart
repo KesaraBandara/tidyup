@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tidyup/models/note_model.dart';
 import 'package:tidyup/pages/create_new_note.dart';
 import 'package:tidyup/pages/home_page.dart';
 import 'package:tidyup/pages/notes_by_category.dart';
 import 'package:tidyup/pages/notes_page.dart';
 import 'package:tidyup/pages/todo_page.dart';
+import 'package:tidyup/pages/update_note_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -50,6 +52,16 @@ class AppRouter {
           final isNewCategory = state.extra as bool;
 
           return CreateNotePage(isNewCategory: isNewCategory);
+        },
+      ),
+      GoRoute(
+        name: "edit-note", // Corrected route name
+        path: "/edit-note", // Corrected path with parameter
+        builder: (context, state) {
+          final Note note = state.extra as Note;
+          return UpdateNotePage(
+            note: note,
+          );
         },
       ),
     ],

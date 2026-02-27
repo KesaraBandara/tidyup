@@ -28,6 +28,12 @@ class _NoteByCategoryState extends State<NoteByCategory> {
     noteList = await noteService.getNotesByCategory(widget.category);
     setState(() {});
   }
+
+    //edit note
+  void _editNote(Note note) {
+    //navigate to the edit note page
+    AppRouter.router.push('/edit-note', extra: note);
+  }
   
   
   @override
@@ -77,7 +83,10 @@ class _NoteByCategoryState extends State<NoteByCategory> {
                     noteTitle: noteList[index].title,
                     noteContent: noteList[index].content,
                     removeNote: () async {},
-                   editNote: () async {}, viewSingleNote: () {  },
+                   editNote: () async {
+                      _editNote(noteList[index]);
+                   }, 
+                   viewSingleNote: () {  },
                   );
                 },
               ),
