@@ -97,7 +97,12 @@ class _NoteByCategoryState extends State<NoteByCategory> {
                   return NoteCategoryCard(
                     noteTitle: noteList[index].title,
                     noteContent: noteList[index].content,
-                    removeNote: () async {},
+                    removeNote: () async {
+                      await _removeNote(noteList[index].id);
+                      setState(() {
+                        noteList.removeAt(index);
+                      });
+                    },
                    editNote: () async {
                       _editNote(noteList[index]);
                    }, 
