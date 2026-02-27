@@ -5,6 +5,7 @@ import 'package:tidyup/pages/create_new_note.dart';
 import 'package:tidyup/pages/home_page.dart';
 import 'package:tidyup/pages/notes_by_category.dart';
 import 'package:tidyup/pages/notes_page.dart';
+import 'package:tidyup/pages/single_note.dart';
 import 'package:tidyup/pages/todo_page.dart';
 import 'package:tidyup/pages/update_note_page.dart';
 
@@ -59,9 +60,16 @@ class AppRouter {
         path: "/edit-note", // Corrected path with parameter
         builder: (context, state) {
           final Note note = state.extra as Note;
-          return UpdateNotePage(
-            note: note,
-          );
+          return UpdateNotePage(note: note);
+        },
+      ),
+
+      GoRoute(
+        name: "single-note", // Corrected route name
+        path: "/single-note", // Corrected path with parameter
+        builder: (context, state) {
+          final Note note = state.extra as Note;
+          return SingleNotePage(note: note);
         },
       ),
     ],
