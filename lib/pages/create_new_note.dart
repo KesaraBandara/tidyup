@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tidyup/helpers/snackbar.dart';
+import 'package:tidyup/models/note_model.dart';
 import 'package:tidyup/services/note_service.dart';
 import 'package:tidyup/utils/colors.dart';
 import 'package:tidyup/utils/constants.dart';
+import 'package:tidyup/utils/router.dart';
 import 'package:tidyup/utils/text_styles.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateNotePage extends StatefulWidget {
   final bool isNewCategory;
@@ -200,7 +204,7 @@ class _CreateNotePageState extends State<CreateNotePage> {
                     const SizedBox(height: 10),
                     //content field
                     TextFormField(
-                      controller: _noteTitileController,
+                      controller: _noteContentController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your note content';
@@ -237,7 +241,42 @@ class _CreateNotePageState extends State<CreateNotePage> {
                               AppColors.kFabColor,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            //save the notes
+                            if (_formKey.currentState!.validate()) {
+                              try {
+                                final NoteService noteService = NoteService();
+                                noteService.addNote(
+                                  Note(
+                                    id: const Uuid().v4(),
+                                    title: _noteTitileController.text,
+                                    category: widget.isNewCategory
+                                        ? _categoryController.text
+                                        : category,
+                                    content: _noteContentController.text,
+                                    date: DateTime.now(),
+                                  ),
+                                );
+                                //show a snackbar
+                                AppHelpers.showSnackBar(
+                                  context,
+                                  'Note saved successfully',
+                                );
+
+                                //clear the form
+                                _noteTitileController.clear();
+                                _noteContentController.clear();
+                                AppRouter.router.push("/notes");
+                              } catch (e) {
+                                //show a snackbar
+                                AppHelpers.showSnackBar(
+                                  context,
+                                  'Failed to save note',
+                                );
+                              }
+                            }
+                          },
+
                           child: const Padding(
                             padding: EdgeInsets.all(10.0),
                             child: Text(
