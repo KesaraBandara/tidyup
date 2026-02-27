@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tidyup/helpers/snackbar.dart';
 import 'package:tidyup/models/note_model.dart';
 import 'package:tidyup/services/note_service.dart';
 import 'package:tidyup/utils/constants.dart';
@@ -33,6 +34,20 @@ class _NoteByCategoryState extends State<NoteByCategory> {
   void _editNote(Note note) {
     //navigate to the edit note page
     AppRouter.router.push('/edit-note', extra: note);
+  }
+
+   //remove note
+  Future<void> _removeNote(String id) async {
+    try {
+      await NoteService().deleteNote(id);
+      if (context.mounted) {
+        // ignore: use_build_context_synchronously
+        AppHelpers.showSnackBar(context, "Note deleted successfully");
+      }
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      AppHelpers.showSnackBar(context, "Failed to delete note");
+    }
   }
   
   
