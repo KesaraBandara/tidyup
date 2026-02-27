@@ -23,4 +23,9 @@ class TodoService {
     ),
   ];
 
+  //create the database reference for todos
+
+  final _myBox = Hive.box<Todo>('todos');
+
+
 }
