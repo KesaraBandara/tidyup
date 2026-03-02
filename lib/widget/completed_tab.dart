@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tidyup/models/todo_model.dart';
 
 class CompletedTab extends StatefulWidget {
-  const CompletedTab({super.key});
+  final List<Todo> completeToDos;
+  const CompletedTab({super.key, required this.completeToDos});
 
   @override
   State<CompletedTab> createState() => _CompletedTabState();

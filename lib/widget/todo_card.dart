@@ -6,12 +6,12 @@ import 'package:tidyup/utils/text_styles.dart';
 class TodoCard extends StatefulWidget {
   final Todo toDo;
   final bool isComplete;
-  final Function() onCheckBoxChanged;
+  // final Function() onCheckBoxChanged;
   const TodoCard({
     super.key,
     required this.toDo,
     required this.isComplete,
-    required this.onCheckBoxChanged,
+    // required this.onCheckBoxChanged,
   });
 
   @override
@@ -28,10 +28,7 @@ class _TodoCardState extends State<TodoCard> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
-        title: Text(
-          widget.toDo.title,
-          style: AppTextStyles.appDescription,
-        ),
+        title: Text(widget.toDo.title, style: AppTextStyles.appDescription),
         subtitle: Row(
           children: [
             Text(
@@ -49,10 +46,8 @@ class _TodoCardState extends State<TodoCard> {
             ),
           ],
         ),
-        trailing: Checkbox(
-          value: widget.isComplete,
-          onChanged: (bool? value) => widget.onCheckBoxChanged(),
-        ),
+
+        trailing: Checkbox(onChanged: (value) {}, value: widget.isComplete),
       ),
     );
   }

@@ -38,4 +38,13 @@ class TodoService {
       await _myBox.put("todos", todos);
     }
   }
+
+    // Method to load the todos
+  Future<List<Todo>> loadTodos() async {
+    final dynamic todos = await _myBox.get("todos");
+    if (todos != null && todos is List<dynamic>) {
+      return todos.cast<Todo>().toList();
+    }
+    return [];
+  }
 }
