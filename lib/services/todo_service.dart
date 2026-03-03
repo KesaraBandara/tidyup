@@ -39,12 +39,26 @@ class TodoService {
     }
   }
 
-    // Method to load the todos
+  // Method to load the todos
   Future<List<Todo>> loadTodos() async {
     final dynamic todos = await _myBox.get("todos");
     if (todos != null && todos is List<dynamic>) {
       return todos.cast<Todo>().toList();
     }
     return [];
+  }
+
+  //mark the todo as done
+  Future<void> markAsDone(Todo todo) async {
+    try {
+      //get all todos from the box
+      final dynamic allTodos = await _myBox.get("todos");
+      final int index = allTodos.indexWhere((element) => element.id == todo.id);
+      allTodos[index] = todo;
+      await _myBox.put("todos", allTodos);
+      // ignore: empty_catches
+    } catch (e) {
+      print(e);
+    }
   }
 }
